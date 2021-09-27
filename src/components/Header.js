@@ -27,6 +27,7 @@ class Header extends Component {
 
     return (
       <header testid="header-component">
+        <h1>Trybetunes</h1>
         <h2 data-testid="header-user-name">
           { loading ? <Loading /> : `Olá ${name}` }
         </h2>

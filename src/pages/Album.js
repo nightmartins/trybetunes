@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
-import SongCard from '../components/SongCard';
+import MusicCard from '../components/MusicCard';
 
 class Album extends Component {
   constructor() {
@@ -41,7 +41,7 @@ class Album extends Component {
           <img src={ albumCover } alt={ albumName } />
         </section>
         {songsList.slice(1).map((music) => (
-          <SongCard
+          <MusicCard
             key={ music.trackId }
             trackName={ music.trackName }
             previewUrl={ music.previewUrl }
@@ -62,3 +62,6 @@ Album.propTypes = {
 }.isRequired;
 
 export default Album;
+
+// refs: https://github.com/tryber/sd-014-b-project-trybetunes/pull/58/files
+// https://github.com/tryber/sd-014-b-project-trybetunes/pull/74/files
