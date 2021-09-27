@@ -4,9 +4,9 @@ import Header from '../components/Header';
 class Search extends Component {
   render() {
     return (
-      <div data-testid="page-search">
+      <div>
         <Header />
-        <h2>Search</h2>
+        <h2 data-testid="page-search">Search</h2>
         <form>
           <input type="text" data-testid="search-artist-input" />
           <button type="submit" data-testid="search-artist-button">Pesquisar</button>
