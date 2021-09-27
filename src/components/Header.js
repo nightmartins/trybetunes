@@ -41,3 +41,6 @@ class Header extends Component {
 }
 
 export default Header;
+
+// Referência para renderizar o nome do usuário:
+// https://github.com/tryber/sd-014-b-project-trybetunes/pull/74/files
