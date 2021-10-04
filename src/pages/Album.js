@@ -32,12 +32,13 @@ class Album extends Component {
 
   render() {
     const { songsList, artist, albumName, albumCover } = this.state;
+    console.log(songsList);
     return (
       <div data-testid="page-album">
         <Header />
         <section>
           <h2 data-testid="album-name">{ albumName }</h2>
-          <h3 ddata-testid="artist-name">{ artist }</h3>
+          <h3 data-testid="artist-name">{ artist }</h3>
           <img src={ albumCover } alt={ albumName } />
         </section>
         {songsList.slice(1).map((music) => (
@@ -46,6 +47,7 @@ class Album extends Component {
             trackName={ music.trackName }
             previewUrl={ music.previewUrl }
             trackId={ music.trackId }
+            infos={ music }
           />
         ))}
       </div>

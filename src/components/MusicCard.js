@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { addSong, removeSong } from '../services/favoriteSongsAPI';
+import { addSong, removeSong, } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
 
 class MusicCard extends Component {
@@ -13,22 +13,22 @@ class MusicCard extends Component {
     };
   }
 
-  handleChange = async (event) => {
+  handleChange = async ({ target: { id, checked } }) => {
     this.setState({
       loading: true,
     });
 
-    if (event.target.checked) {
-      await addSong(event.target.trackId);
-      this.setState({
-        loading: false,
-        checked: true,
-      });
-    } else {
-      await removeSong(event.target.trackId);
+    if (!checked) {
+      await removeSong(id);
       this.setState({
         loading: false,
         checked: false,
+      });
+    } else {
+      await addSong(id);
+      this.setState({
+        loading: false,
+        checked: true,
       });
     }
   }
@@ -71,3 +71,4 @@ export default MusicCard;
 
 // refs: https://github.com/tryber/sd-014-b-project-trybetunes/pull/58/files
 // https://github.com/tryber/sd-014-b-project-trybetunes/pull/74/files
+// https://github.com/tryber/sd-014-b-project-trybetunes/pull/90/files

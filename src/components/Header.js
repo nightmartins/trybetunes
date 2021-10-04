@@ -26,7 +26,7 @@ class Header extends Component {
     const { name, loading } = this.state;
 
     return (
-      <header testid="header-component">
+      <header data-testid="header-component">
         <h1>Trybetunes</h1>
         <h2 data-testid="header-user-name">
           { loading ? <Loading /> : `Olá ${name}` }

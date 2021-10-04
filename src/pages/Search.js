@@ -66,7 +66,7 @@ class Search extends Component {
     const { search, loading, found } = this.state;
 
     return (
-      <div data-testid="page-search">
+      <main data-testid="page-search">
         <Header />
         <h1>Search</h1>
         <form>
@@ -87,7 +87,7 @@ class Search extends Component {
           { loading && <Loading /> }
           { found && this.generateList() }
         </form>
-      </div>
+      </main>
     );
   }
 }
