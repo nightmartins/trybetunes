@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { addSong, removeSong, } from '../services/favoriteSongsAPI';
+import { addSong, removeSong } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
 
 class MusicCard extends Component {
@@ -14,6 +14,7 @@ class MusicCard extends Component {
   }
 
   handleChange = async ({ target: { id, checked } }) => {
+    // const { match: { params } } = this.props;
     this.setState({
       loading: true,
     });
