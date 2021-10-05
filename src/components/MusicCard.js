@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { addSong, removeSong } from '../services/favoriteSongsAPI';
+import { addSong, removeSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 import Loading from './Loading';
 
 class MusicCard extends Component {
@@ -13,29 +13,37 @@ class MusicCard extends Component {
     };
   }
 
-  handleChange = async ({ target: { id, checked } }) => {
-    // const { match: { params } } = this.props;
-    this.setState({
-      loading: true,
-    });
+  componentDidMount() {
+    this.loadFavorites();
+  }
 
+  handleCheck = async ({ target: { checked } }) => {
+    const { infos } = this.props;
+    this.setState({ loading: true });
     if (!checked) {
-      await removeSong(id);
-      this.setState({
-        loading: false,
-        checked: false,
-      });
+      await removeSong(infos);
+      this.setState({ checked: false });
     } else {
-      await addSong(id);
-      this.setState({
-        loading: false,
-        checked: true,
-      });
+      this.setState({ checked: true });
+      await addSong(infos);
     }
+    this.setState({ loading: false });
+  }
+
+  loadFavorites = async () => {
+    const { infos } = this.props;
+    const { trackId } = infos;
+    const favoriteSongs = await getFavoriteSongs();
+    favoriteSongs.forEach((favoriteSong) => {
+      if (favoriteSong.trackId === trackId) {
+        this.setState({ checked: true });
+      }
+    });
   }
 
   render() {
-    const { previewUrl, trackName, trackId } = this.props;
+    const { infos } = this.props;
+    const { trackName, previewUrl, trackId } = infos;
     const { loading, checked } = this.state;
     const musicCardRender = (
       <div>
@@ -49,7 +57,7 @@ class MusicCard extends Component {
           <input
             id={ trackId }
             type="checkbox"
-            onChange={ this.handleChange }
+            onChange={ this.handleCheck }
             checked={ checked }
           />
           Favorita
@@ -70,6 +78,8 @@ MusicCard.propTypes = {
 
 export default MusicCard;
 
-// refs: https://github.com/tryber/sd-014-b-project-trybetunes/pull/58/files
+// Referências:
+// https://github.com/tryber/sd-014-b-project-trybetunes/pull/58/files
 // https://github.com/tryber/sd-014-b-project-trybetunes/pull/74/files
 // https://github.com/tryber/sd-014-b-project-trybetunes/pull/90/files
+// https://github.com/tryber/sd-014-b-project-trybetunes/pull/34/files

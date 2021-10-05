@@ -32,7 +32,7 @@ class Album extends Component {
 
   render() {
     const { songsList, artist, albumName, albumCover } = this.state;
-    console.log(songsList);
+
     return (
       <div data-testid="page-album">
         <Header />
@@ -44,9 +44,6 @@ class Album extends Component {
         {songsList.slice(1).map((music) => (
           <MusicCard
             key={ music.trackId }
-            trackName={ music.trackName }
-            previewUrl={ music.previewUrl }
-            trackId={ music.trackId }
             infos={ music }
           />
         ))}
