@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
-import MusicCard from '../components/MusicCard';
 import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 import Loading from '../components/Loading';
-// import getMusics from '../services/musicsAPI';
+import FavoritesCard from '../components/FavoritesCard';
 
 class Favorites extends Component {
   constructor() {
@@ -12,7 +11,6 @@ class Favorites extends Component {
     this.state = {
       loading: false,
       favoritesList: [],
-      // checked: true,
     };
   }
 
@@ -34,18 +32,17 @@ class Favorites extends Component {
   render() {
     const { loading, favoritesList } = this.state;
     const favoritesRender = (
-      <div>
+      <div id="root">
         {favoritesList.map((music) => (
-          <MusicCard
+          <FavoritesCard
             key={ music.trackId }
-            trackName={ music.trackName }
-            previewUrl={ music.previewUrl }
-            trackId={ music.trackId }
+            infos={ music }
           />
         ))}
       </div>
     );
 
+    if (loading) return <Loading />;
     return (
       <main data-testid="page-favorites">
         <Header />
