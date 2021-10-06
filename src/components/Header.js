@@ -29,7 +29,7 @@ class Header extends Component {
       <header data-testid="header-component">
         <h1>Trybetunes</h1>
         <h2 data-testid="header-user-name">
-          { loading ? <Loading /> : `Olá ${name}` }
+          { loading ? <Loading /> : `${name}` }
         </h2>
         <nav>
           <Link to="/search" data-testid="link-to-search">Procurar</Link>
